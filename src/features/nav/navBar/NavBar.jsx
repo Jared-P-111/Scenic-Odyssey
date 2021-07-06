@@ -30,7 +30,7 @@ function NavBar({ toggle }) {
       <Logo />
       <NavLink to="/media">
         <NavIcon>
-          <span>Media</span>
+          <span>Scenery</span>
           <MdPermMedia />
         </NavIcon>
       </NavLink>

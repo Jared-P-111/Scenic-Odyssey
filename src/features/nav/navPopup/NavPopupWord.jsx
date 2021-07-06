@@ -8,7 +8,7 @@ const sentence = {
     opacity: 1,
     transition: {
       delay: 2,
-      staggerChildren: 0.5,
+      staggerChildren: 0.3,
     },
   },
 };
@@ -21,13 +21,13 @@ const letter = {
   },
 };
 
-const NavPopupWord = ({ word }) => {
+const NavPopupWord = ({ word, isOpen }) => {
   return (
     <motion.div
       className="load-screen--message"
       variants={sentence}
       initial="hidden"
-      animate="visible"
+      animate={isOpen ? 'visible' : ''}
     >
       {word.split('').map((char, index) => {
         return (
@@ -46,7 +46,7 @@ const NavWordSty = styled.span`
   color: #525fcf;
 
   &:hover {
-    color: hotpink;
+    color: #eb64b5;
 
     text-shadow: 2px 2px 8px #eb64b5, -2px -2px 8px #eb64b5, 2px 2px 20px #eb64b5,
       -2px -2px 20px #eb64b5, 2px 2px 40px #eb64b5, -2px -2px 40px #eb64b5;
