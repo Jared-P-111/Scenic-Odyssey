@@ -22,6 +22,10 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     background-color: black;
   }
+
+  html {
+    height: 100vh;
+  }
 `;
 
 function App() {

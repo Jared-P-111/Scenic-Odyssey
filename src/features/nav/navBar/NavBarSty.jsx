@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import { NavLink as LinkR } from 'react-router-dom';
 import logo from '../../../images/logo.png';
 
@@ -11,13 +12,22 @@ export const Nav = styled.nav`
   padding: 10px;
   border-bottom: 8px solid #525fcf;
   backface-visibility: none;
+  position: relative;
 
   @media screen and (max-width: 490px) {
     height: 40px;
   }
 `;
 
+export const NavLinkContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+`;
+
 export const NavLink = styled(LinkR)`
+  position: absolute;
   height: 50%;
   font-family: 'Bebas Neue', cursive;
   display: flex;
@@ -25,7 +35,7 @@ export const NavLink = styled(LinkR)`
   align-self: center;
   letter-spacing: 4px;
   align-items: center;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0);
   font-size: 17px;
   color: #6abaff;
   text-decoration: none;
@@ -40,18 +50,35 @@ export const NavLink = styled(LinkR)`
   border: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
   border-radius: 4px;
-  z-index: 1;
   flex-grow: 0;
-  backface-visibility: none;
+  z-index: 1;
 
-  @media screen and (max-width: 490px) {
-    display: none;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.5s ease-in-out;
+    backdrop-filter: blur(30px);
+    z-index: -1;
   }
 
-  @media screen and (max-width: 800px) {
-    width: 80px;
-    font-size: 10px;
-  }
+  /* &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -5px;
+    width: 30px;
+    height: 10px;
+    background: #eb64b5;
+    border-radius: 10px;
+    transition: all 0.5s ease-in-out;
+    z-index: -1000;
+  } */
 
   &:hover {
     box-shadow: 0 10px 10px rgba(253, 82, 140, 0.3);
@@ -77,32 +104,23 @@ export const NavLink = styled(LinkR)`
     }
   }
 
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    transition: all 0.5s ease-in-out;
-    backdrop-filter: blur(30px);
-    z-index: -1;
+  @media screen and (max-width: 490px) {
+    display: none;
   }
 
-  &:after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: -5px;
-    width: 30px;
-    height: 10px;
-    background: #eb64b5;
-    border-radius: 10px;
-    z-index: -10;
-    transition: all 0.5s ease-in-out;
+  @media screen and (max-width: 800px) {
+    width: 80px;
+    font-size: 10px;
   }
+`;
+
+export const BtnBackDropDiv = styled(motion.div)`
+  bottom: 24px;
+  width: ${(props) => (props.toggleDiv ? '40px' : '100px')};
+  height: 20px;
+  background-color: #eb64b5;
+  position: absolute;
+  border-radius: 15%;
 `;
 
 export const Logo = styled.div`
@@ -134,7 +152,7 @@ export const MobileIcon = styled.div`
   }
 
   &:hover {
-    color: hotpink;
+    color: #eb64b5;
   }
 `;
 
