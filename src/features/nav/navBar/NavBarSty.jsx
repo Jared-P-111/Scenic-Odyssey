@@ -40,7 +40,7 @@ export const NavLink = styled(LinkR)`
   color: #6abaff;
   text-decoration: none;
   width: 180px;
-  padding: 0 1rem;
+  padding: 0 30px;
   cursor: pointer;
   text-transform: uppercase;
   transition: all 0.5s ease-in-out;
@@ -84,10 +84,10 @@ export const NavLink = styled(LinkR)`
     box-shadow: 0 10px 10px rgba(253, 82, 140, 0.3);
     color: #eb64b5;
 
-    @media screen and (max-width: 800px) {
+    /* @media screen and (max-width: 1700px) {
       width: 80px;
       font-size: 12px;
-    }
+    } */
 
     &:before {
       transition: all 0.5s ease-in-out;
@@ -108,15 +108,20 @@ export const NavLink = styled(LinkR)`
     display: none;
   }
 
-  @media screen and (max-width: 800px) {
-    width: 80px;
+  @media screen and (max-width: 1700px) {
+    width: 10vw;
+    font-size: 15px;
+    padding: 0 50px;
+  }
+
+  @media screen and (max-width: 650px) {
     font-size: 10px;
+    padding: 0 30px;
   }
 `;
 
 export const BtnBackDropDiv = styled(motion.div)`
   bottom: 24px;
-  width: ${(props) => (props.toggleDiv ? '40px' : '100px')};
   height: 20px;
   background-color: #eb64b5;
   position: absolute;
@@ -153,14 +158,5 @@ export const MobileIcon = styled.div`
 
   &:hover {
     color: #eb64b5;
-  }
-`;
-
-export const NavIcon = styled.div`
-  display: flex;
-  align-items: center;
-
-  & span {
-    margin-right: 5px;
   }
 `;

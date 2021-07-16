@@ -20,11 +20,9 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    background-color: black;
-  }
-
-  html {
     height: 100vh;
+    width: 100vw;
+    background-color: black;
   }
 `;
 

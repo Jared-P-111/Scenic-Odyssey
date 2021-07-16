@@ -1,38 +1,74 @@
-import React, { useState } from 'react';
-import {
-  Nav,
-  NavLink,
-  Logo,
-  MobileIcon,
-  NavIcon,
-  BtnBackDropDiv,
-  NavLinkContainer,
-} from './NavBarSty';
+import React, { useState, useEffect } from 'react';
+import { Nav, NavLink, Logo, MobileIcon, BtnBackDropDiv, NavLinkContainer } from './NavBarSty';
 import { FaBars } from 'react-icons/fa';
 import { TiTicket, TiInfo } from 'react-icons/ti';
 import { GiCampingTent, GiMusicalNotes } from 'react-icons/gi';
-import { MdPermMedia } from 'react-icons/md';
+import { GiPalmTree } from 'react-icons/gi';
 import { BiPurchaseTag } from 'react-icons/bi';
 
 function NavBar({ toggle }) {
-  const [toggleDiv, setToggleDiv] = useState(false);
+  //---------------------STATE------------------------------
+  const [toggleTicketBtn, setToggleTicketBtn] = useState(true);
+  const [toggleCampingBtn, setToggleCampingBtn] = useState(true);
+  const [toggleArtistsBtn, setToggleArtistsBtn] = useState(true);
+  const [toggleSceneryBtn, setToggleSceneryBtn] = useState(true);
+  const [toggleAboutBtn, setToggleAboutBtn] = useState(true);
+  const [toggleVendorBtn, setToggleVendorBtn] = useState(true);
+  const [windowWidth, setWindowWidth] = useState({ width: window.innerWidth });
 
-  const toggleDivOnHover = () => {
-    setToggleDiv(!toggleDiv);
-  };
+  //----------------------ICONS-------------------------------
+
+  const iconStyle = { fontSize: '15px', flexShrink: 0 };
+  const iconsLeft = [TiTicket, GiCampingTent, GiMusicalNotes];
+  const iconsRight = [GiPalmTree, TiInfo, BiPurchaseTag];
+
+  //---------------------SCREEN RESIZE-----------------------
+  function debounce(fn, ms) {
+    let timer;
+    return () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        timer = null;
+        fn.apply(this, arguments);
+      }, ms);
+    };
+  }
+
+  useEffect(() => {
+    const debouncedHandleResize = debounce(function handleResize() {
+      setWindowWidth({
+        height: window.innerHeight,
+        width: window.innerWidth,
+      });
+    }, 1000);
+
+    window.addEventListener('resize', debouncedHandleResize);
+
+    return () => {
+      window.removeEventListener('resize', debouncedHandleResize);
+    };
+  });
+
+  //-------------------- MAPPABLE OBJECTS FOR COMPONENT-------------
 
   const navBarDataLeft = [
     {
       pageTo: 'tickets',
       name: 'Tickets',
+      state: toggleTicketBtn,
+      adjustState: setToggleTicketBtn,
     },
     {
       pageTo: 'camping',
       name: 'Camping',
+      state: toggleCampingBtn,
+      adjustState: setToggleCampingBtn,
     },
     {
       pageTo: 'artists',
       name: 'Artists',
+      state: toggleArtistsBtn,
+      adjustState: setToggleArtistsBtn,
     },
   ];
 
@@ -40,49 +76,89 @@ function NavBar({ toggle }) {
     {
       pageTo: 'scenery',
       name: 'Scenery',
+      state: toggleSceneryBtn,
+      adjustState: setToggleSceneryBtn,
     },
     {
       pageTo: 'about',
       name: 'About',
+      state: toggleAboutBtn,
+      adjustState: setToggleAboutBtn,
     },
     {
       pageTo: 'vendors',
       name: 'Vendors',
+      state: toggleVendorBtn,
+      adjustState: setToggleVendorBtn,
     },
   ];
 
+  //-----------------------DYNAMIC VARIANTS-------------------
+
+  let restVariant = 20;
+  let activeVariant = 100;
+  let adjustVariant = () => {
+    if (windowWidth.width < 1200 && windowWidth.width > 800) {
+      restVariant = 20;
+      activeVariant = 50;
+      console.log('800px to 1200 : Current => ' + windowWidth.width);
+    } else if (windowWidth.width < 800) {
+      restVariant = 20;
+      activeVariant = 50;
+      console.log('< 800px ' + windowWidth.width);
+    }
+  };
+
+  adjustVariant();
+
+  const variants = {
+    rest: { width: restVariant },
+    active: { width: activeVariant },
+  };
+
+  //------------------ NAVBAR COMPONENT--------------------------
+
   return (
     <Nav>
-      {navBarDataLeft.map((obj) => {
+      {navBarDataLeft.map((obj, idx) => {
+        const Icon = iconsLeft[idx];
         return (
           <NavLinkContainer>
             <NavLink
               to={obj.pageTo}
-              onMouseEnter={toggleDivOnHover}
-              onMouseLeave={toggleDivOnHover}
+              onMouseEnter={() => obj.adjustState(!obj.state)}
+              onMouseLeave={() => obj.adjustState(!obj.state)}
             >
-              <NavIcon />
               <span>{obj.name}</span>
-              <TiTicket />
+              <Icon style={iconStyle} />
             </NavLink>
-            <BtnBackDropDiv toggleDiv={toggleDiv} />
+            <BtnBackDropDiv
+              custom={windowWidth}
+              variants={variants}
+              animate={obj.state ? 'rest' : 'active'}
+              transition={{ duration: 0.3 }}
+            />
           </NavLinkContainer>
         );
       })}
-      <Logo />
-      {navBarDataRight.map((obj) => {
+      <Logo style={{ zIndex: 1 }} />
+      {navBarDataRight.map((obj, idx) => {
+        const Icon = iconsRight[idx];
         return (
           <NavLinkContainer>
             <NavLink
               to={obj.pageTo}
-              onMouseEnter={toggleDivOnHover}
-              onMouseLeave={toggleDivOnHover}
+              onMouseEnter={() => obj.adjustState(!obj.state)}
+              onMouseLeave={() => obj.adjustState(!obj.state)}
             >
-              <NavIcon />
               <span>{obj.name}</span>
-              <TiTicket />
+              <Icon style={iconStyle} />
             </NavLink>
-            <BtnBackDropDiv toggleDiv={toggleDiv} />
+            <BtnBackDropDiv
+              variants={variants}
+              animate={obj.state ? 'rest' : 'active'}
+              transition={{ duration: 0.3 }}
+            />
           </NavLinkContainer>
         );
       })}
