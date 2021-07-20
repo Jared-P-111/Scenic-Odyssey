@@ -3,11 +3,9 @@ import logo from '../../../images/logo.png';
 import styled from 'styled-components';
 
 export const NavBarBannerSty = styled.div`
-  background-color: turquoise;
   background-image: url(${banner});
   background-position: center;
   background-size: auto;
-  width: 100vw;
   height: 125px;
   border-bottom: 8px solid #525fcf;
   display: flex;

@@ -101,11 +101,9 @@ function NavBar({ toggle }) {
     if (windowWidth.width < 1200 && windowWidth.width > 800) {
       restVariant = 20;
       activeVariant = 50;
-      console.log('800px to 1200 : Current => ' + windowWidth.width);
     } else if (windowWidth.width < 800) {
       restVariant = 20;
       activeVariant = 50;
-      console.log('< 800px ' + windowWidth.width);
     }
   };
 
@@ -123,7 +121,7 @@ function NavBar({ toggle }) {
       {navBarDataLeft.map((obj, idx) => {
         const Icon = iconsLeft[idx];
         return (
-          <NavLinkContainer>
+          <NavLinkContainer key={obj.name}>
             <NavLink
               to={obj.pageTo}
               onMouseEnter={() => obj.adjustState(!obj.state)}
@@ -145,7 +143,7 @@ function NavBar({ toggle }) {
       {navBarDataRight.map((obj, idx) => {
         const Icon = iconsRight[idx];
         return (
-          <NavLinkContainer>
+          <NavLinkContainer key={obj.name}>
             <NavLink
               to={obj.pageTo}
               onMouseEnter={() => obj.adjustState(!obj.state)}

@@ -14,21 +14,21 @@ const sentence = {
 };
 
 const letter = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: {
+    opacity: 0,
+    y: 50,
+    textShadow: '2px 2px 8px #eb64b5, -2px -2px 8px #eb64b5',
+  },
   visible: {
     opacity: 1,
     y: 0,
+    textShadow: '2px 2px 8px #525fcf, -2px -2px 8px #525fcf',
   },
 };
 
 const NavPopupWord = ({ word, isOpen }) => {
   return (
-    <motion.div
-      className="load-screen--message"
-      variants={sentence}
-      initial="hidden"
-      animate={isOpen ? 'visible' : ''}
-    >
+    <motion.div variants={sentence} initial="hidden" animate={isOpen ? 'visible' : ''}>
       {word.split('').map((char, index) => {
         return (
           <NavWordSty>

@@ -58,7 +58,8 @@ export const NavPopupLink = styled(LinkR)`
   text-decoration: none;
   color: #fff;
   cursor: pointer;
-  font-family: 'Bebas Neue', cursive;
+  font-family: 'Zen Tokyo Zoo', cursive;
   font-size: 2.3rem;
   letter-spacing: 20px;
+  text-transform: uppercase;
 `;
