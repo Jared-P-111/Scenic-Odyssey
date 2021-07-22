@@ -1,12 +1,35 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { wrap } from '@popmotion/popcorn';
+import palmButton from '../../images/palmTreeButton.png';
+import logo from '../../images/logo.png';
+import styled from 'styled-components';
 
 const Slider = () => {
   const [[page, direction], setPage] = useState([0, 0]);
 
-  const COLORS = ['#F72585', '#7209B7', '#3a0ca3', '#4361ee', '#4cc9f0'];
-  const colorsIndex = wrap(0, COLORS.length, page);
+  const PalmButton = styled(motion.button)`
+    background-image: url(${palmButton});
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-position: center;
+    background-size: contain;
+    height: 100px;
+    width: 100px;
+    margin: 30px;
+    transform: ${(props) => (props.reverse ? 'scaleX(-1)' : null)};
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+    }
+  `;
+
+  const IMAGES = [logo, palmButton];
+  const imageIndex = wrap(0, IMAGES.length, page);
 
   const paginate = (direction) => {
     setPage([page + direction, direction]);
@@ -14,46 +37,61 @@ const Slider = () => {
 
   const variants = {
     enter: (direction) => ({
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0.5,
-      scale: 0.5,
+      x: direction > 0 ? 10 : -10,
+      opacity: 0,
     }),
     center: {
+      zIndex: 1,
       x: 0,
       opacity: 1,
-      scale: 1,
     },
     exit: (direction) => ({
-      x: direction < 0 ? -100 : 100,
+      zIndex: 0,
+      x: direction < 0 ? 10 : -10,
       opacity: 0,
       display: 'none',
     }),
   };
-
+  // const divWrapper = {
+  //   position: 'relative',
+  //   display: 'flex',
+  //   justifyContent: 'center',
+  //   width: '100vw',
+  //   height: '800',
+  //   backgroundColor: 'red',
+  // };
   const sliderContainer = {
+    position: 'absolute',
     display: 'flex',
+    width: '100%',
     justifyContent: 'center',
+    alignItems: 'center',
     marginTop: 100,
-    paddingBottom: 200,
+    paddingBottom: 100,
+    marginLeft: 'auto',
   };
 
-  const slideStyles = {
-    height: '35rem',
-    backgroundColor: COLORS[colorsIndex],
-    width: 800,
+  const sliderStyles = {
+    width: '50%',
+    height: 800,
   };
 
   return (
     <div style={sliderContainer}>
-      <AnimatePresence custom={direction}>
-        <motion.div
+      <PalmButton onClick={() => paginate(1)} />
+      <AnimatePresence custom={direction} initial={false}>
+        <motion.img
           key={page}
           custom={direction}
-          style={slideStyles}
+          src={IMAGES[imageIndex]}
+          style={sliderStyles}
           variants={variants}
           initial="enter"
           animate="center"
           exit="exit"
+          transition={{
+            x: { type: 'spring', stiffness: 300, damping: 30 },
+          }}
           dragConstraints={{ left: 1, right: 1 }}
           dragElastic={0.5}
           drag="x"
@@ -66,6 +104,7 @@ const Slider = () => {
           }}
         />
       </AnimatePresence>
+      <PalmButton reverse onClick={() => paginate(-1)} />
     </div>
   );
 };

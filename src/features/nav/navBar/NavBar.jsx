@@ -114,6 +114,39 @@ function NavBar({ toggle }) {
     active: { width: activeVariant },
   };
 
+  //------------------ LOGO Variants ---------------------------
+
+  let logoVariantWidth = 250;
+  let logoVariantHeight = 250;
+  let adjustLogoVariant = () => {
+    if (windowWidth.width < 1200 && windowWidth.width > 500) {
+      logoVariantWidth = 150;
+      logoVariantHeight = 150;
+    } else if (windowWidth.width < 499) {
+      logoVariantWidth = 125;
+      logoVariantHeight = 125;
+    }
+  };
+
+  adjustLogoVariant();
+
+  const logoVariants = {
+    hidden: {
+      height: 0,
+      width: 0,
+      opacity: 0,
+    },
+    visible: {
+      height: logoVariantHeight,
+      width: logoVariantWidth,
+      scale: 1,
+      opacity: 1,
+      transition: {
+        duration: 0.7,
+      },
+    },
+  };
+
   //------------------ NAVBAR COMPONENT--------------------------
 
   return (
@@ -139,7 +172,7 @@ function NavBar({ toggle }) {
           </NavLinkContainer>
         );
       })}
-      <Logo style={{ zIndex: 1 }} />
+      <Logo style={{ zIndex: 1 }} variants={logoVariants} initial="hidden" animate="visible" />
       {navBarDataRight.map((obj, idx) => {
         const Icon = iconsRight[idx];
         return (

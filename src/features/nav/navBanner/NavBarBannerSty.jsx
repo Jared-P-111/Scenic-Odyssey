@@ -1,6 +1,7 @@
 import banner from '../../../images/bannerImg.webp';
 import logo from '../../../images/logo.png';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 export const NavBarBannerSty = styled.div`
   background-image: url(${banner});
@@ -13,13 +14,11 @@ export const NavBarBannerSty = styled.div`
   align-items: center;
 `;
 
-export const LogoSty = styled.div`
+export const LogoSty = styled(motion.div)`
   display: none;
 
   @media screen and (max-width: 900px) {
     display: block;
-    height: 150px;
-    width: 150px;
     background-image: url(${logo});
     background-color: lightblue;
     background-position: center;

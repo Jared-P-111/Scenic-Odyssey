@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
+//Hero Header
+
 const HeroContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -33,13 +35,23 @@ const HeroHeader = styled(motion.h1)`
   }
 `;
 
-const pStyle = {
-  fontSize: '3rem',
-  fontFamily: 'Zen Tokyo Zoo',
-  textAlign: 'center',
-  color: '#E5B3FE',
-  width: '70vw',
-};
+const HeroParagraph = styled(motion.p)`
+  font-size: 3rem;
+  font-family: 'Amatic SC', cursive;
+  text-align: center;
+  color: #e5b3fe;
+  width: 70vw;
+
+  @media screen and (max-width: 1300px) {
+    font-size: 2rem;
+  }
+
+  @media screen and (max-width: 800px) {
+    font-size: 1.5rem;
+  }
+`;
+
+const inputSentence = 'We welcome you to Scenic Odyssey';
 
 const sentence = {
   hidden: { opacity: 0 },
@@ -66,7 +78,18 @@ const letter = {
   },
 };
 
-const inputSentence = 'We welcome you to Scenic Odyssey';
+const paragraph = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      delay: 2.3,
+      duration: 1.5,
+    },
+  },
+};
 
 const Hero = () => {
   return (
@@ -81,12 +104,12 @@ const Hero = () => {
             );
           })}
         </HeroHeader>
-        <p style={pStyle}>
+        <HeroParagraph variants={paragraph} initial="hidden" animate="visible" transition={2}>
           We stand for love and nature as we try to bring beautiful souls together through music and
           art. We believe in all genres and all types of art. We encourage all people to come visit
           and help us create community and spread love. Come embark on this emotional journey with
           us.
-        </p>
+        </HeroParagraph>
       </HeroInnerContainer>
     </HeroContainer>
   );

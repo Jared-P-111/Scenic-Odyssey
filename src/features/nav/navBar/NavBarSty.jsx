@@ -127,9 +127,8 @@ export const BtnBackDropDiv = styled(motion.div)`
   border-radius: 15%;
 `;
 
-export const Logo = styled.div`
-  height: 250px;
-  width: 250px;
+export const Logo = styled(motion.div)`
+  margin-top: 15px;
   background-image: url(${logo});
   background-color: lightblue;
   background-position: auto;
@@ -140,8 +139,14 @@ export const Logo = styled.div`
   flex-shrink: 0;
   filter: saturate(150%);
 
-  @media screen and (max-width: 900px) {
-    display: none;
+  @media screen and (max-width: 1200px) {
+    margin-top: 60px;
+    position: absolute;
+  }
+
+  @media screen and (max-width: 500px) {
+    margin-top: 28px;
+    position: absolute;
   }
 `;
 
