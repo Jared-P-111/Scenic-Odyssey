@@ -37,18 +37,12 @@ const Slider = () => {
   const variants = {
     enter: () => ({
       opacity: 0,
-      scale: 0,
-      zIndex: -100,
     }),
     center: {
-      zIndex: 1,
       opacity: 1,
-      scale: 1,
     },
     exit: () => ({
       opacity: 0,
-      scale: 0,
-      zIndex: -100,
     }),
   };
   // const divWrapper = {
@@ -59,11 +53,11 @@ const Slider = () => {
   //   height: '800',
   //   backgroundColor: 'red',
   // };
-  const sliderContainer = {
+  const SliderContainer = {
     position: 'absolute',
     display: 'flex',
     width: '100%',
-    height: '800',
+    height: 'auto',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 100,
@@ -72,22 +66,22 @@ const Slider = () => {
   };
 
   const sliderStyles = {
-    width: 'auto',
+    width: '100%',
     maxWidth: 1100,
     maxHeight: 800,
     height: 'auto',
   };
 
   const backDropDiv = {
-    width: 1100,
-    height: 800,
+    width: 'auto',
+    height: '50vh',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   };
 
   return (
-    <div style={sliderContainer}>
+    <div style={SliderContainer}>
       <PalmButton onClick={() => paginate(1)} />
       <div style={backDropDiv}>
         <AnimatePresence custom={direction} initial={false} exitBeforeEnter>

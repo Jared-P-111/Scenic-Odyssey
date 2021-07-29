@@ -52,11 +52,14 @@ const HeroParagraph = styled(motion.p)`
   padding-right: 100px;
 
   @media screen and (max-width: 1300px) {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
   @media screen and (max-width: 800px) {
-    font-size: 1.5rem;
+    font-size: 2rem;
+    width: 90vw;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 `;
 
