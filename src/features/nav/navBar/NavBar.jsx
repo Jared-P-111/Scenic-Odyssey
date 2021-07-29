@@ -172,7 +172,7 @@ function NavBar({ toggle }) {
           </NavLinkContainer>
         );
       })}
-      <Logo style={{ zIndex: 1 }} variants={logoVariants} initial="hidden" animate="visible" />
+      {/* <Logo style={{ zIndex: 1 }} variants={logoVariants} initial="hidden" animate="visible" /> */}
       {navBarDataRight.map((obj, idx) => {
         const Icon = iconsRight[idx];
         return (

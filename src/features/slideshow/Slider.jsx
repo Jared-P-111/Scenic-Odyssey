@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { wrap } from '@popmotion/popcorn';
 import palmButton from '../../images/palmTreeButton.png';
-import logo from '../../images/logo.png';
+import SLIDERIMAGES from './imageData';
 import styled from 'styled-components';
 
 const Slider = () => {
@@ -20,7 +20,6 @@ const Slider = () => {
     transform: ${(props) => (props.reverse ? 'scaleX(-1)' : null)};
     border: none;
     border-radius: 30px;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     transition: 0.2s ease-in-out;
 
     &:hover {
@@ -28,7 +27,7 @@ const Slider = () => {
     }
   `;
 
-  const IMAGES = [logo, palmButton];
+  const IMAGES = SLIDERIMAGES;
   const imageIndex = wrap(0, IMAGES.length, page);
 
   const paginate = (direction) => {
@@ -36,20 +35,20 @@ const Slider = () => {
   };
 
   const variants = {
-    enter: (direction) => ({
-      x: direction > 0 ? 10 : -10,
+    enter: () => ({
       opacity: 0,
+      scale: 0,
+      zIndex: -100,
     }),
     center: {
       zIndex: 1,
-      x: 0,
       opacity: 1,
+      scale: 1,
     },
-    exit: (direction) => ({
-      zIndex: 0,
-      x: direction < 0 ? 10 : -10,
+    exit: () => ({
       opacity: 0,
-      display: 'none',
+      scale: 0,
+      zIndex: -100,
     }),
   };
   // const divWrapper = {
@@ -64,6 +63,7 @@ const Slider = () => {
     position: 'absolute',
     display: 'flex',
     width: '100%',
+    height: '800',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 100,
@@ -72,38 +72,50 @@ const Slider = () => {
   };
 
   const sliderStyles = {
-    width: '50%',
+    width: 'auto',
+    maxWidth: 1100,
+    maxHeight: 800,
+    height: 'auto',
+  };
+
+  const backDropDiv = {
+    width: 1100,
     height: 800,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   };
 
   return (
     <div style={sliderContainer}>
       <PalmButton onClick={() => paginate(1)} />
-      <AnimatePresence custom={direction} initial={false}>
-        <motion.img
-          key={page}
-          custom={direction}
-          src={IMAGES[imageIndex]}
-          style={sliderStyles}
-          variants={variants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{
-            x: { type: 'spring', stiffness: 300, damping: 30 },
-          }}
-          dragConstraints={{ left: 1, right: 1 }}
-          dragElastic={0.5}
-          drag="x"
-          onDragEnd={(e, { offset, velocity }) => {
-            if (offset.x > 200) {
-              paginate(-1);
-            } else if (offset.x < -200) {
-              paginate(1);
-            }
-          }}
-        />
-      </AnimatePresence>
+      <div style={backDropDiv}>
+        <AnimatePresence custom={direction} initial={false} exitBeforeEnter>
+          <motion.img
+            key={page}
+            custom={direction}
+            src={IMAGES[imageIndex]}
+            style={sliderStyles}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              x: { type: 'spring', stiffness: 300, damping: 30 },
+            }}
+            dragConstraints={{ left: 1, right: 1 }}
+            dragElastic={0.5}
+            drag="x"
+            onDragEnd={(e, { offset, velocity }) => {
+              if (offset.x > 200) {
+                paginate(-1);
+              } else if (offset.x < -200) {
+                paginate(1);
+              }
+            }}
+          />
+        </AnimatePresence>
+      </div>
       <PalmButton reverse onClick={() => paginate(-1)} />
     </div>
   );

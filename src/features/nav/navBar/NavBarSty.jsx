@@ -9,9 +9,12 @@ export const Nav = styled.nav`
   display: flex;
   justify-content: center;
   padding: 10px;
-  border-bottom: 8px solid #525fcf;
+  border-bottom: 4px solid #525fcf;
   backface-visibility: none;
-  position: relative;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
 
   @media screen and (max-width: 490px) {
     height: 40px;
@@ -121,10 +124,11 @@ export const NavLink = styled(LinkR)`
 
 export const BtnBackDropDiv = styled(motion.div)`
   bottom: 24px;
-  height: 20px;
+  height: 23px;
   background-color: #eb64b5;
   position: absolute;
   border-radius: 15%;
+  outline: 1px solid transparent;
 `;
 
 export const Logo = styled(motion.div)`

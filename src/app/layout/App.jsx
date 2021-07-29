@@ -9,6 +9,7 @@ import { Artists } from '../../pages/Artists.js';
 import { Camping } from '../../pages/Camping.js';
 import { Media } from '../../pages/Media.js';
 import { Vendors } from '../../pages/Vendors.js';
+import { Tickets } from '../../pages/Tickets.js';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -21,8 +22,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    
-    background-color: black;
+    background-color:#060011;
     
   }
 `;
@@ -38,6 +38,7 @@ function App() {
       <Route path="/camping" component={Camping} />
       <Route path="/media" component={Media} />
       <Route path="/vendors" component={Vendors} />
+      <Route path="/tickets" component={Tickets} />
     </BrowserRouter>
   );
 }

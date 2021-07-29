@@ -16,7 +16,6 @@ export const Home = () => {
     <div>
       <NavPopup isOpen={isOpen} toggle={toggle} />
       <Navbar toggle={toggle} />
-      <NavBarBanner />
       <Hero />
       <Slideshow />
     </div>

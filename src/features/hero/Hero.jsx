@@ -1,21 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import ReactPlayer from 'react-player';
+import banner from '../../images/bannerImg.webp';
 
 //Hero Header
 
 const HeroContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  flex-direction: column;
   color: white;
-  margin-top: 100px;
+  height: 100vh;
+  /* background-image: url(${banner}); */
+  padding-bottom: 100px;
 `;
 
 const HeroInnerContainer = styled.div`
   display: flex;
-  width: 70vw;
-  align-items: center;
+  width: 100vw;
+  height: 90%;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const HeroHeader = styled(motion.h1)`
@@ -41,6 +48,8 @@ const HeroParagraph = styled(motion.p)`
   text-align: center;
   color: #e5b3fe;
   width: 70vw;
+  padding-left: 100px;
+  padding-right: 100px;
 
   @media screen and (max-width: 1300px) {
     font-size: 2rem;
@@ -51,7 +60,7 @@ const HeroParagraph = styled(motion.p)`
   }
 `;
 
-const inputSentence = 'We welcome you to Scenic Odyssey';
+const inputSentence = 'Welcome to Scenic Odyssey';
 
 const sentence = {
   hidden: { opacity: 0 },
