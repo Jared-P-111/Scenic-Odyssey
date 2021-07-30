@@ -8,19 +8,23 @@ import styled from 'styled-components';
 const Slider = () => {
   const [[page, direction], setPage] = useState([0, 0]);
 
-  const PalmButton = styled(motion.button)`
+  const PalmButton = styled.button`
     background-image: url(${palmButton});
     background-repeat: no-repeat;
     background-color: transparent;
-    background-position: center;
     background-size: contain;
     height: 100px;
-    width: 100px;
-    margin: 30px;
+    width: 100%;
+    margin: auto;
     transform: ${(props) => (props.reverse ? 'scaleX(-1)' : null)};
     border: none;
     border-radius: 30px;
     transition: 0.2s ease-in-out;
+    z-index: 10;
+
+    @media screen and (max-width: 1000px) {
+      height: 50px;
+    }
 
     &:hover {
       cursor: pointer;
@@ -45,57 +49,54 @@ const Slider = () => {
       opacity: 0,
     }),
   };
-  // const divWrapper = {
-  //   position: 'relative',
-  //   display: 'flex',
-  //   justifyContent: 'center',
-  //   width: '100vw',
-  //   height: '800',
-  //   backgroundColor: 'red',
-  // };
-  const SliderContainer = {
-    position: 'absolute',
-    display: 'flex',
-    width: '100%',
-    height: 'auto',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 100,
-    paddingBottom: 100,
-    marginLeft: 'auto',
-  };
 
-  const sliderStyles = {
-    width: '100%',
-    maxWidth: 1100,
-    maxHeight: 800,
-    height: 'auto',
-  };
+  const SlideContainer = styled.div`
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    padding-bottom: 100px;
+    margin-left: auto;
+  `;
 
-  const backDropDiv = {
-    width: 'auto',
-    height: '50vh',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  };
+  const SliderStyles = styled(motion.img)`
+    object-fit: cover;
+    height: 100%;
+    width: auto;
+  `;
+
+  const BackDropDiv = styled.div`
+    width: 70vw;
+    height: 40vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (max-width: 1000px) {
+      width: 90vw;
+    }
+  `;
 
   return (
-    <div style={SliderContainer}>
-      <PalmButton onClick={() => paginate(1)} />
-      <div style={backDropDiv}>
-        <AnimatePresence custom={direction} initial={false} exitBeforeEnter>
-          <motion.img
+    <SlideContainer>
+      <AnimatePresence custom={direction} exitBeforeEnter>
+        <BackDropDiv>
+          <PalmButton onClick={() => paginate(1)} />
+          <SliderStyles
             key={page}
             custom={direction}
             src={IMAGES[imageIndex]}
-            style={sliderStyles}
+            // style={sliderStyles}
             variants={variants}
             initial="enter"
             animate="center"
             exit="exit"
             transition={{
-              x: { type: 'spring', stiffness: 300, damping: 30 },
+              x: { type: 'spring', damping: 30 },
+              duration: 1,
             }}
             dragConstraints={{ left: 1, right: 1 }}
             dragElastic={0.5}
@@ -108,10 +109,10 @@ const Slider = () => {
               }
             }}
           />
-        </AnimatePresence>
-      </div>
-      <PalmButton reverse onClick={() => paginate(-1)} />
-    </div>
+          <PalmButton reverse onClick={() => paginate(-1)} />
+        </BackDropDiv>
+      </AnimatePresence>
+    </SlideContainer>
   );
 };
 

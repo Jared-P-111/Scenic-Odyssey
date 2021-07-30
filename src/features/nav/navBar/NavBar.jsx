@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Nav, NavLink, Logo, MobileIcon, BtnBackDropDiv, NavLinkContainer } from './NavBarSty';
+import { Nav, NavLink, MobileIcon, BtnBackDropDiv, NavLinkContainer } from './NavBarSty';
 import { FaBars } from 'react-icons/fa';
 import { TiTicket, TiInfo } from 'react-icons/ti';
 import { GiCampingTent, GiMusicalNotes } from 'react-icons/gi';

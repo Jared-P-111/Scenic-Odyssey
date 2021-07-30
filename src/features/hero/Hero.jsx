@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import ReactPlayer from 'react-player';
 import banner from '../../images/bannerImg.webp';
+import Mancala from '../animation-components/Mancala';
 
 //Hero Header
-
 const HeroContainer = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -13,12 +12,11 @@ const HeroContainer = styled.div`
   color: white;
   height: 100vh;
   /* background-image: url(${banner}); */
-  padding-bottom: 100px;
 `;
 
 const HeroInnerContainer = styled.div`
   display: flex;
-  width: 100vw;
+  width: 100%;
   height: 90%;
   flex-direction: column;
   justify-content: space-between;
@@ -48,8 +46,7 @@ const HeroParagraph = styled(motion.p)`
   text-align: center;
   color: #e5b3fe;
   width: 70vw;
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-bottom: 50px;
 
   @media screen and (max-width: 1300px) {
     font-size: 2.5rem;
