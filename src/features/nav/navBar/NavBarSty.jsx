@@ -48,7 +48,7 @@ export const NavLink = styled(LinkR)`
   transition: all 0.5s ease-in-out;
   margin-left: 3px;
   margin-right: 3px;
-  box-shadow: 0 10px 10px rgba(102, 186, 255, 0.3);
+  box-shadow: 0 10px 10px rgba(253, 82, 140, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
   border-radius: 4px;
@@ -80,10 +80,11 @@ export const NavLink = styled(LinkR)`
     border-radius: 10px;
     transition: all 0.5s ease-in-out;
     z-index: -1000;
+    
   } */
 
   &:hover {
-    box-shadow: 0 10px 10px rgba(253, 82, 140, 0.3);
+    box-shadow: 0 10px 10px rgba(102, 186, 255, 0.3);
     color: #eb64b5;
 
     /* @media screen and (max-width: 1700px) {

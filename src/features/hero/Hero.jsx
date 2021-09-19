@@ -1,35 +1,37 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import banner from '../../images/bannerImg.webp';
+import banner from '../../images/sunsetTree.jpg';
 import Mancala from '../animation-components/Mancala';
 
 //Hero Header
 const HeroContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
   flex-direction: column;
-  color: white;
   height: 100vh;
-  /* background-image: url(${banner}); */
+  background-image: url(${banner});
+  background-size: cover;
+  background-position: center;
+  padding-top: 100px;
+  z-index: 1;
 `;
 
-const HeroInnerContainer = styled.div`
+const HeaderContainer = styled.div`
   display: flex;
-  width: 100%;
-  height: 90%;
-  flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  flex-basis: 100%;
+  z-index: 3;
 `;
 
 const HeroHeader = styled(motion.h1)`
-  font-family: 'Zen Tokyo Zoo', cursive;
   text-align: center;
+  font-family: 'Zen Tokyo Zoo', cursive;
   text-transform: uppercase;
-  padding-bottom: 1rem;
+  padding-bottom: 10rem;
   font-size: 5rem;
   color: #e5b3fe;
+  z-index: 4;
 
   @media screen and (max-width: 1300px) {
     font-size: 3rem;
@@ -40,27 +42,34 @@ const HeroHeader = styled(motion.h1)`
   }
 `;
 
+const HeroParagraphContainer = styled.div`
+  display: flex;
+  align-items: flex-end;
+  flex-basis: 100%;
+`;
+
 const HeroParagraph = styled(motion.p)`
-  font-size: 3rem;
+  font-size: 2rem;
   font-family: 'Amatic SC', cursive;
   text-align: center;
   color: #e5b3fe;
-  width: 70vw;
+  width: 50vw;
   padding-bottom: 50px;
+  margin: 0 auto;
 
   @media screen and (max-width: 1300px) {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
   }
 
   @media screen and (max-width: 800px) {
-    font-size: 2rem;
+    font-size: 1rem;
     width: 90vw;
     padding-left: 10px;
     padding-right: 10px;
   }
 `;
 
-const inputSentence = 'Welcome to Scenic Odyssey';
+const inputSentence = 'Welcome to scenic odyssey';
 
 const sentence = {
   hidden: { opacity: 0 },
@@ -103,7 +112,8 @@ const paragraph = {
 const Hero = () => {
   return (
     <HeroContainer>
-      <HeroInnerContainer>
+      <Mancala />
+      <HeaderContainer>
         <HeroHeader variants={sentence} initial="hidden" animate="visible">
           {inputSentence.split('').map((char, index) => {
             return (
@@ -113,13 +123,15 @@ const Hero = () => {
             );
           })}
         </HeroHeader>
-        <HeroParagraph variants={paragraph} initial="hidden" animate="visible" transition={2}>
+      </HeaderContainer>
+      <HeroParagraphContainer>
+        <HeroParagraph variants={paragraph} initial="hidden" animate="visible" transition={1}>
           We stand for love and nature as we try to bring beautiful souls together through music and
           art. We believe in all genres and all types of art. We encourage all people to come visit
           and help us create community and spread love. Come embark on this emotional journey with
           us.
         </HeroParagraph>
-      </HeroInnerContainer>
+      </HeroParagraphContainer>
     </HeroContainer>
   );
 };
