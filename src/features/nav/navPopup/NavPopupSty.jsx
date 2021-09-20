@@ -49,17 +49,14 @@ export const NavPopupMenu = styled.ul`
 export const NavPopupLink = styled(LinkR)`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
   font-size: 1.5rem;
   text-decoration: none;
   list-style: none;
-  /* opacity: ${({ isOpen }) => (isOpen ? '100' : '0')}; */
-  /* transition: opacity ${({ isOpen }) => (isOpen ? '3s' : '0')}; */
   text-decoration: none;
-  color: #fff;
   cursor: pointer;
   font-family: 'Zen Tokyo Zoo', cursive;
   font-size: 2.3rem;
-  letter-spacing: 20px;
+  letter-spacing: 15px;
   text-transform: uppercase;
 `;

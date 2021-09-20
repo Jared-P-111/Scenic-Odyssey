@@ -22,8 +22,8 @@ const Slider = () => {
     transition: 0.2s ease-in-out;
     z-index: 10;
 
-    @media screen and (max-width: 1000px) {
-      height: 50px;
+    @media screen and (max-width: 800px) {
+      display: none;
     }
 
     &:hover {
@@ -54,18 +54,21 @@ const Slider = () => {
     position: absolute;
     display: flex;
     width: 100%;
-    height: auto;
+    height: 50vh;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
-    padding-bottom: 100px;
     margin-left: auto;
+
+    @media screen and (max-width: 800px) {
+      margin-top: 0;
+    }
   `;
 
   const SliderStyles = styled(motion.img)`
+    width: 100%;
+    height: 50vh;
     object-fit: cover;
-    height: 100%;
-    width: auto;
+    object-position: center;
   `;
 
   const BackDropDiv = styled.div`
@@ -74,9 +77,8 @@ const Slider = () => {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    @media screen and (max-width: 1000px) {
-      width: 90vw;
+    @media screen and (max-width: 800px) {
+      width: 100%;
     }
   `;
 
@@ -89,7 +91,6 @@ const Slider = () => {
             key={page}
             custom={direction}
             src={IMAGES[imageIndex]}
-            // style={sliderStyles}
             variants={variants}
             initial="enter"
             animate="center"

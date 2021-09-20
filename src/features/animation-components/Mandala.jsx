@@ -1,26 +1,21 @@
 import React, { useEffect } from 'react';
 import lottie from 'lottie-web';
-import mancala from '../../animations/mancala.json';
+import mandala from '../../animations/mandala.json';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
-const MancalaStyles = styled(motion.div)`
-  width: 50%;
-  height: 50%;
+const MandalaStyles = styled(motion.div)`
+  height: 500px;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -20%);
+  transform: translate(-50%, 20%);
 
   @media screen and (max-width: 1300px) {
-    width: 65%;
-    height: 65%;
     transform: translate(-50%, 10%);
   }
 
   @media screen and (max-width: 800px) {
-    width: 80%;
-    height: 80%;
     transform: translate(-50%, 10%);
   }
 `;
@@ -38,26 +33,26 @@ const mandalaAnimation = {
   },
 };
 
-const Mancala = () => {
+const Mandala = () => {
   useEffect(() => {
     lottie.loadAnimation({
-      container: document.querySelector('#mancala-animation'),
-      animationData: mancala,
+      container: document.querySelector('#mandala-animation'),
+      animationData: mandala,
       loop: false,
     });
   }, []);
 
   return (
-    <MancalaStyles>
+    <MandalaStyles>
       <motion.div
-        id="mancala-animation"
+        id="mandala-animation"
         initial="visible"
         animate="hidden"
         variants={mandalaAnimation}
         transition={{ duration: 2, delay: 1.2 }}
       ></motion.div>
-    </MancalaStyles>
+    </MandalaStyles>
   );
 };
 
-export default Mancala;
+export default Mandala;

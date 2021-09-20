@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import banner from '../../images/sunsetTree.jpg';
-import Mancala from '../animation-components/Mancala';
+import Mandala from '../animation-components/Mandala';
 
 //Hero Header
 const HeroContainer = styled.div`
@@ -21,7 +21,6 @@ const HeaderContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-basis: 100%;
-  z-index: 3;
 `;
 
 const HeroHeader = styled(motion.h1)`
@@ -112,7 +111,7 @@ const paragraph = {
 const Hero = () => {
   return (
     <HeroContainer>
-      <Mancala />
+      <Mandala />
       <HeaderContainer>
         <HeroHeader variants={sentence} initial="hidden" animate="visible">
           {inputSentence.split('').map((char, index) => {

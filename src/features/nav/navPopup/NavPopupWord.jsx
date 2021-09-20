@@ -26,31 +26,34 @@ const letter = {
   },
 };
 
-const NavPopupWord = ({ word, isOpen }) => {
-  return (
-    <motion.div variants={sentence} initial="hidden" animate={isOpen ? 'visible' : ''}>
-      {word.split('').map((char, index) => {
-        return (
-          <NavWordSty>
-            <motion.span key={char + '-' + index} variants={letter}>
-              {char}
-            </motion.span>
-          </NavWordSty>
-        );
-      })}
-    </motion.div>
-  );
-};
-
-const NavWordSty = styled.span`
+const NavWordSty = styled(motion.div)`
   color: #525fcf;
+  display: flex;
+  font-size: 25px;
 
   &:hover {
     color: #eb64b5;
-
     text-shadow: 2px 2px 8px #eb64b5, -2px -2px 8px #eb64b5, 2px 2px 20px #eb64b5,
       -2px -2px 20px #eb64b5, 2px 2px 40px #eb64b5, -2px -2px 40px #eb64b5;
   }
 `;
+
+const NavWordContainer = styled(motion.div)`
+  display: flex;
+  padding-left: 20px;
+`;
+const NavPopupWord = ({ word, isOpen }) => {
+  return (
+    <NavWordContainer variants={sentence} initial="hidden" animate={isOpen ? 'visible' : ''}>
+      {word.split('').map((char, index) => {
+        return (
+          <NavWordSty key={char + '-' + index} variants={letter}>
+            {char}
+          </NavWordSty>
+        );
+      })}
+    </NavWordContainer>
+  );
+};
 
 export default NavPopupWord;
