@@ -130,23 +130,6 @@ function NavBar({ toggle }) {
 
   adjustLogoVariant();
 
-  const logoVariants = {
-    hidden: {
-      height: 0,
-      width: 0,
-      opacity: 0,
-    },
-    visible: {
-      height: logoVariantHeight,
-      width: logoVariantWidth,
-      scale: 1,
-      opacity: 1,
-      transition: {
-        duration: 0.7,
-      },
-    },
-  };
-
   //------------------ NAVBAR COMPONENT--------------------------
 
   return (
@@ -172,7 +155,7 @@ function NavBar({ toggle }) {
           </NavLinkContainer>
         );
       })}
-      {/* <Logo style={{ zIndex: 1 }} variants={logoVariants} initial="hidden" animate="visible" /> */}
+
       {navBarDataRight.map((obj, idx) => {
         const Icon = iconsRight[idx];
         return (

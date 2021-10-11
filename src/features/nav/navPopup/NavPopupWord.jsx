@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
+import { TiTicket, TiInfo } from 'react-icons/ti';
+import { GiCampingTent, GiMusicalNotes } from 'react-icons/gi';
 
 const sentence = {
   hidden: { opacity: 1 },
@@ -42,7 +44,8 @@ const NavWordContainer = styled(motion.div)`
   display: flex;
   padding-left: 20px;
 `;
-const NavPopupWord = ({ word, isOpen }) => {
+const NavPopupWord = ({ word, isOpen, icon }) => {
+  const Icon = icon;
   return (
     <NavWordContainer variants={sentence} initial="hidden" animate={isOpen ? 'visible' : ''}>
       {word.split('').map((char, index) => {

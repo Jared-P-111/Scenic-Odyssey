@@ -9,7 +9,7 @@ const MandalaStyles = styled(motion.div)`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, 20%);
+  transform: translate(-50%, -50%);
 
   @media screen and (max-width: 1300px) {
     transform: translate(-50%, 10%);
@@ -17,6 +17,7 @@ const MandalaStyles = styled(motion.div)`
 
   @media screen and (max-width: 800px) {
     transform: translate(-50%, 10%);
+    height: 300px;
   }
 `;
 

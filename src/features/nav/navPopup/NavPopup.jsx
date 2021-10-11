@@ -9,31 +9,32 @@ import {
 } from './NavPopupSty';
 import NavPopupWord from './NavPopupWord';
 
+//This needs to be mapped FOR DRY!
 const NavPopup = ({ isOpen, toggle }) => {
   return (
     <NavPopupContainer isOpen={isOpen} onClick={toggle}>
-      <Icon onClick={toggle} isOpen={isOpen}>
+      <Icon onClick={toggle}>
         <CloseIcon />
       </Icon>
       <NavPopupWrapper>
         <NavPopupMenu>
-          <NavPopupLink to="/tickets" onClick={toggle} isOpen={isOpen}>
-            <NavPopupWord word="Tickets" isOpen={isOpen} />
+          <NavPopupLink to="/tickets" onClick={toggle}>
+            <NavPopupWord word="Tickets" isOpen={isOpen} icon={'TiTicket'} />
           </NavPopupLink>
-          <NavPopupLink to="/camping" onClick={toggle} isOpen={isOpen}>
-            <NavPopupWord word="Camping" isOpen={isOpen} />
+          <NavPopupLink to="/camping" onClick={toggle}>
+            <NavPopupWord word="Camping" isOpen={isOpen} icon={'GiCampingTent'} />
           </NavPopupLink>
-          <NavPopupLink to="/artists" onClick={toggle} isOpen={isOpen}>
-            <NavPopupWord word="Artists" isOpen={isOpen} />
+          <NavPopupLink to="/artists" onClick={toggle}>
+            <NavPopupWord word="Artists" isOpen={isOpen} icon={'GiMusicalNotes'} />
           </NavPopupLink>
-          <NavPopupLink to="/media" onClick={toggle} isOpen={isOpen}>
-            <NavPopupWord word="Media" isOpen={isOpen} />
+          <NavPopupLink to="/media" onClick={toggle}>
+            <NavPopupWord word="Scenery" isOpen={isOpen} icon={'GiPalmTree'} />
           </NavPopupLink>
-          <NavPopupLink to="/about" onClick={toggle} isOpen={isOpen}>
-            <NavPopupWord word="About" isOpen={isOpen} />
+          <NavPopupLink to="/about" onClick={toggle}>
+            <NavPopupWord word="About" isOpen={isOpen} icon={'TiInfo'} />
           </NavPopupLink>
-          <NavPopupLink to="/vendors" onClick={toggle} isOpen={isOpen}>
-            <NavPopupWord word="Vendors" isOpen={isOpen} />
+          <NavPopupLink to="/vendors" onClick={toggle}>
+            <NavPopupWord word="Vendors" isOpen={isOpen} icon={'BiPurchaseTag'} />
           </NavPopupLink>
         </NavPopupMenu>
       </NavPopupWrapper>
