@@ -19,7 +19,6 @@ export const Home = () => {
       <NavPopup isOpen={isOpen} toggle={toggle} />
       <Navbar toggle={toggle} />
       <Hero />
-      <Image />
       <Slideshow />
       <SoundCloudFeature />
       <VideoPlayerFeature />
